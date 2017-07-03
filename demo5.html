@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap.min.css"/>
+		<script src="../../angula/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	    <style type="text/css">
+	    	*{
+	    	margin:0;
+	    	padding:0;
+	    }
+	    #box{width:600px;margin:50px auto;}
+	    </style>
+	    
+	</head>
+	<body ng-app="">
+		<div ng-controller="ctrl" id="box">
+		<div>
+			<input type="text" ng-model='ipt' class="form-control" />
+			<button ng-init="student=[]" ng-click="add()">添加</button>
+		</div><hr/>
+		<table class="table">
+			<tr>
+				<th>序号</th>
+				<th>姓名</th>
+				<th>操作</th>
+				<th>改名</th>
+			</tr>
+			
+			<tr ng-repeat="(index,item) in student">
+	            <td>{{index+1}}</td>
+				<td>{{item}}</td>
+				<td><button  class="btn btn-danger" ng-click="dele(index)">删除</button></td>
+				<td><button  class="btn btn-danger" ng-click="xiugai(index)">修改</button></td>
+			</tr>
+		</table>
+	</body>
+	<script type="text/javascript">
+		function ctrl($scope){
+			$scope.add=function(){
+				$scope.student.push($scope.ipt)
+				$scope.ipt=''
+			}
+			$scope.dele=function(index){
+                $scope.student.splice(index,1);
+			}
+			$scope.xiugai=function(index){
+                var a=prompt('请输入你的名字','')
+                  $scope.student.splice(index,1,a);
+            }
+		}
+	</script>
+</html>
